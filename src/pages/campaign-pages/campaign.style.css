@@ -1,0 +1,11 @@
+.ph-campaign-leaflate-uploader{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 15em;
+    border: 1px solid var(--ph-l-grey);
+    border-radius: 10px;
+    cursor: pointer;
+}

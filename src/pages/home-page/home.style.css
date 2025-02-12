@@ -1,0 +1,24 @@
+.ph-request-btn-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ph-request-btn {
+    background-color: var(--ph-l-green);
+    color: #ffff;
+    width: 20em;
+    height: 3em;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+.ph-request-btn:active{
+    gap: 1em;
+}
+
+.ph-camps-list {
+    display: flex;
+    flex-flow: wrap;
+    gap: 2em;
+}

@@ -1,0 +1,87 @@
+/***** button css *****/
+.ph-btn {
+    background-color: transparent;
+    border: 1px solid transparent;
+    outline: none;
+    padding: 0.3em 0.8em;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    transition: 0.2s;
+}
+
+.ph-btn:hover {
+    filter: brightness(1.1);
+}
+
+.ph-btn:active {
+    filter: brightness(0.8);
+}
+
+.ph-btn-primary {
+    background-color: var(--ph-l-green);
+    border-radius: 10px;
+    color: #ffff;
+}
+
+.ph-btn-shadow {
+    box-shadow: 0 0 9px 0 #aaaaaa73;
+    border-radius: 10px;
+    justify-content: center;
+}
+
+.ph-btn-shadow:hover {
+    background-color: #e1e1e1;
+}
+
+/***** End button css *****/
+
+/***** text css *****/
+.ph-url-colored {
+    text-decoration: none;
+    color: #5076f5;
+}
+
+/***** End text css *****/
+
+/***** form css *****/
+.ph-form-input-3-width {
+    width: calc(100% / 3);
+}
+
+.ph-form-input-2-width {
+    width: calc(100% / 2);
+}
+
+input[type=date],
+input[type=time] {
+    border: 1px solid var(--ph-l-grey);
+    outline: none;
+    width: 100%;
+    padding: 0.5em 1em;
+    min-height: 3.5em;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+input[type=date]:focus,
+input[type=time]:focus {
+    border-color: var(--ph-l-green);
+}
+
+textarea {
+    width: 100%;
+    padding: 0.5em 1em;
+    border: 1px solid var(--ph-l-grey);
+    border-radius: 10px;
+    transition: 0.2s;
+    outline: none;
+    min-height: 15em;
+}
+
+textarea:focus {
+    border-color: var(--ph-l-green);
+}
+
+/***** End form css *****/

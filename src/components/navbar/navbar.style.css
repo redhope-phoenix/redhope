@@ -1,0 +1,51 @@
+/***** navbar *****/
+
+header{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    position: sticky;
+    background-color: #ffff;
+    top: 0;
+    z-index: 10;
+}
+.ph-navbar {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr auto;
+    width: 70vw;
+    padding: 0.5em 1em;
+    background-color: #ffff;
+    box-shadow: 0 0 10px 0 #e6e6e6;
+    border-radius: 20px;
+}
+
+.ph-nav-opt-box {
+    display: flex;
+    gap: 1em;
+}
+
+.ph-nav-btn{
+    background-color: #e8e8e8;
+    border: 1px solid transparent;
+    outline: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.ph-nav-btn:hover{
+    box-shadow: 0 0 7px 0 #bfbfbf;
+}
+
+.ph-nav-btn:active{
+    filter: brightness(0.8);
+}
+
+/***** End navbar *****/
