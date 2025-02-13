@@ -1,0 +1,15 @@
+.ph-notification-item {
+    background-color: #7fb6e758;
+    padding: 0.7em;
+    border-radius: 10px;
+    margin-bottom: 1em;
+}
+
+.ph-notification-body {
+    font-size: inherit;
+    font-family: inherit;
+    font-style: inherit;
+    white-space: wrap;
+    overflow: hidden;
+    margin: 0;
+}

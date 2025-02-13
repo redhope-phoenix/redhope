@@ -46,7 +46,7 @@
     margin-bottom: 1em;
     background-color: #ffff;
     position: sticky;
-    top: 4.5em;
+    top: 4.4em;
     z-index: 3;
 
     & a {
@@ -73,7 +73,7 @@
 
 /***** Request page css *****/
 
-.hb-profile-request-list{
+.hb-profile-request-list {
     display: flex;
     flex-flow: wrap;
     gap: 1.3em;
@@ -119,3 +119,41 @@
 }
 
 /***** End Profile campaign list *****/
+
+/***** Profile edit page css *****/
+.ph-profile-edit-section {
+    box-shadow: 0 0 9px 0 #aaaaaa73;
+    padding: 0.7em;
+}
+
+.ph-profile-edit-img-box img {
+    width: 170px;
+    border-radius: 50%;
+}
+
+/***** End Profile edid page css *****/
+
+
+/***** media queries *****/
+@media screen and (max-width: 711px) {
+    .ph-request-item {
+        width: 100%;
+    }
+
+    .ph-profile-img-box img {
+        width: 150px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .ph-profile-img-sec {
+        padding: 0.5em;
+        gap: 1em;
+    }
+
+    .ph-profile-img-box img {
+        width: 130px;
+    }
+}
+
+/***** End media queries *****/

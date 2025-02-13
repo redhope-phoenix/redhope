@@ -44,9 +44,9 @@ export const CreateCampaign = () => {
                             <textarea name="" id="" placeholder='Write about the campaign'></textarea>
                         </div>
                         <div>
-                            <label htmlFor="leaflate-uploader" className='ph-campaign-leaflate-uploader'>
+                            <label htmlFor="leaflate-uploader" className='ph-campaign-leaflate-uploader px-2'>
                                 <div><img src={addImgSvg} alt="" width={100} /></div>
-                                <div>Upload a leaflate of the campaign. Filesize within 10mb</div>
+                                <div className='text-center'>Upload a leaflate of the campaign. Filesize within 10mb</div>
                                 <input type="file" accept='image/*' multiple={false} id='leaflate-uploader' className='d-none' />
                             </label>
                         </div>

@@ -1,4 +1,8 @@
 /***** button css *****/
+.container {
+    min-height: calc(100vh - 11.5em);
+}
+
 .ph-btn {
     background-color: transparent;
     border: 1px solid transparent;
@@ -43,6 +47,19 @@
     color: #5076f5;
 }
 
+.ph-f-sm {
+    font-size: 0.9em;
+}
+
+pre {
+    font-size: inherit;
+    font-family: inherit;
+    font-style: inherit;
+    white-space: wrap;
+    overflow: hidden;
+    margin: 0;
+}
+
 /***** End text css *****/
 
 /***** form css *****/
@@ -85,3 +102,46 @@ textarea:focus {
 }
 
 /***** End form css *****/
+
+/***** Display css *****/
+.ph-table {
+    box-shadow: 0 0 9px 0 #aaaaaa73;
+}
+
+.ph-table div {
+    padding: 0.3em 0.5em;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    border-bottom: 1px solid var(--ph-l-grey);
+
+    & strong {
+        width: 7em;
+    }
+}
+
+.ph-table div:last-child {
+    border-bottom: none;
+}
+
+.ph-d-flex-wrap {
+    display: flex;
+    flex-flow: wrap;
+    gap: 0.5em;
+}
+
+.ph-d-grid-2__first-prior{
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+/***** End Display css *****/
+
+
+/***** media queries *****/
+@media screen and (max-width: 768px) {
+    .container {
+        max-width: unset !important;
+    }
+}
+
+/***** End media queries *****/

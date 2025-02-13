@@ -8,7 +8,7 @@
     position: relative;
 }
 
-.ph-camp-card:hover{
+.ph-camp-card:hover {
     box-shadow: 6px 9px 20px 0 #c9c5c5;
 }
 
@@ -22,7 +22,7 @@
     padding: 0.7em;
 }
 
-.ph-camp-item-menue{
+.ph-camp-item-menue {
     position: absolute;
     top: 0;
     left: 0;
@@ -36,18 +36,37 @@
     transition: 0.3s;
     opacity: 0;
 
-    & .ph-btn-primary{
+    & .ph-btn-primary {
         padding: 0.5em 1em;
         transform: translateY(10px);
         transition: 0.3s;
     }
 }
 
-.ph-camp-card:hover .ph-camp-item-menue{
+.ph-camp-card:hover .ph-camp-item-menue {
     opacity: 1;
     backdrop-filter: blur(5px);
 
-    & .ph-btn-primary{
+    & .ph-btn-primary {
         transform: translateY(0px);
     }
 }
+
+/***** media queries *****/
+@media screen and (max-width: 776px) {
+    .ph-camp-card-img-box img {
+        width: 250px;
+        aspect-ratio: 3/2;
+        object-fit: contain;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .ph-camp-card-img-box img {
+        width: 95vw;
+        aspect-ratio: 3/2;
+        object-fit: contain;
+    }
+}
+
+/***** End media queries *****/

@@ -1,6 +1,6 @@
 .hb-dropdown-box{
     position: absolute;
-    background-color: var(--hb-bg-color);
+    background-color: #ffff;
     z-index: 7;
     padding: 0.7em;
     box-shadow: 0 0 9px 0 #9b9b9b5a;

@@ -1,6 +1,6 @@
 /***** navbar *****/
 
-header{
+header {
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -9,13 +9,14 @@ header{
     position: sticky;
     background-color: #ffff;
     top: 0;
-    z-index: 10;
+    z-index: 5;
 }
+
 .ph-navbar {
     display: grid;
     align-items: center;
     grid-template-columns: 1fr auto;
-    width: 70vw;
+    width: 70em;
     padding: 0.5em 1em;
     background-color: #ffff;
     box-shadow: 0 0 10px 0 #e6e6e6;
@@ -27,7 +28,7 @@ header{
     gap: 1em;
 }
 
-.ph-nav-btn{
+.ph-nav-btn {
     background-color: #e8e8e8;
     border: 1px solid transparent;
     outline: none;
@@ -40,12 +41,49 @@ header{
     transition: 0.2s;
 }
 
-.ph-nav-btn:hover{
+.ph-nav-btn:hover {
     box-shadow: 0 0 7px 0 #bfbfbf;
 }
 
-.ph-nav-btn:active{
+.ph-nav-btn:active {
     filter: brightness(0.8);
 }
 
 /***** End navbar *****/
+
+/***** Nav dropdown *****/
+.ph-nav-dropdown-content {
+    width: 15em;
+
+    & button {
+        width: 100%;
+    }
+}
+
+.ph-nav-dropdown-content button:active {
+    background-color: #efefef;
+    border-radius: 10px;
+}
+
+.ph-nav-dropdown-profile-box {
+    background-color: #f3f3f3;
+    padding: 0.2em 0.3em;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.ph-nav-dropdown-profile-box:active {
+    background-color: #dadada;
+}
+
+/***** End Nav dropdown *****/
+
+/***** media queries *****/
+@media screen and (max-width: 1250px) {
+    .ph-navbar {
+        width: 90vw;
+    }
+}
+
+/***** End media queries *****/

@@ -13,7 +13,7 @@
     border-radius: 15px;
 }
 
-.ph-request-btn:active{
+.ph-request-btn:active {
     gap: 1em;
 }
 
@@ -22,3 +22,12 @@
     flex-flow: wrap;
     gap: 2em;
 }
+
+/***** media queries *****/
+@media screen and (max-width: 425px) {
+    .ph-request-btn {
+        width: 100%;
+    }
+}
+
+/***** End media queries *****/
