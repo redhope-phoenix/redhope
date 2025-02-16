@@ -26,15 +26,15 @@ export const Home = () => {
         }
     ]
 
-    const [filter, setFilter] = useState(filterList[0]);
-    useEffect(() => {
-        if (currentUser?.pincode) {
-            setFilter(filterList[0]);
-        } else {
+    const [filter, setFilter] = useState(filterList[1]);
+    // useEffect(() => {
+    //     if (currentUser?.pincode) {
+    //         setFilter(filterList[0]);
+    //     } else {
 
-            setFilter(filterList[1])
-        }
-    }, [currentUser, currentUser]);
+    //         setFilter(filterList[1])
+    //     }
+    // }, [currentUser, currentUser]);
 
     // handle feed
     const [campaignList, setCampaignList] = useState(null);
