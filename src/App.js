@@ -38,7 +38,7 @@ function App() {
         <AppRoutes />
       </main>
       <footer className='text-center my-4 mt-5'>
-        &copy;2024 Redhope. All rights are reserverd
+        &copy;2025 Redhope. All rights are reserverd
       </footer>
 
       <ToastContainer

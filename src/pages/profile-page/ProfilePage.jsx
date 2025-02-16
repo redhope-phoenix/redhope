@@ -49,7 +49,7 @@ export const ProfilePage = () => {
                 </div>}
                 {currentUser?.address && <div className='ph-user-det-line'>
                     <div><strong>Address</strong></div>
-                    <div><span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit fugit, quibusdam possimus quod eligendi soluta nam alias pariatur itaque natus!</span></div>
+                    <div><span>{currentUser?.address?.addressLine}, {currentUser?.address?.district}, {currentUser?.address?.state} - {currentUser?.pincode}</span></div>
                 </div>}
             </section>
 
