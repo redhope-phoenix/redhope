@@ -113,6 +113,16 @@ export const ProfileEditPage = () => {
         setLoading(false);
     }
 
+    // handle user details simultaneously
+    // const handleUpdateUser = () => {
+    //     if (bloodGroup){
+    //     handleBloodGroupUpdate();
+    //     }
+    //     if (contactInfo) {
+    //         handleContactInfoUpdate();
+    //     }
+    // }
+
     // password change function
     const [password, setPassword] = useState({ currentPassword: "", newPassword: "" });
     const handlePasswordChange = async () => {
@@ -173,7 +183,7 @@ export const ProfileEditPage = () => {
             <section className='mb-3 ph-profile-edit-section'>
                 <h6 className='mb-3'>Health details</h6>
                 <div className='mb-3'>
-                    <PopInput placeholder='Blood group (eg. B+)' value={bloodGroup} onChange={e => setBloodGroup(e?.toUpperCase())} style={{ textTransform: "uppercase" }} />
+                    <PopInput placeholder='Blood group (eg. B+)' value={bloodGroup} onChange={e => setBloodGroup(e?.trim().toUpperCase())} style={{ textTransform: "uppercase" }} />
                 </div>
                 <div className='d-flex justify-content-end'>
                     <button className="ph-btn ph-btn-primary" onClick={handleBloodGroupUpdate} disabled={loading}>Save changes</button>

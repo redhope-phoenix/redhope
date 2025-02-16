@@ -74,7 +74,7 @@ export const RequestDonatePage = () => {
                     <div className='mb-4'>
                         <h6>Requirements</h6>
                         <div className='mb-2'>
-                            <PopInput placeholder='Blood group ( eg. B+ )' type='text' value={requirement?.bloodGroup} onChange={e => setRequirement({ ...requirement, bloodGroup: e?.toUpperCase() })} style={{ textTransform: "uppercase" }} />
+                            <PopInput placeholder='Blood group ( eg. B+ )' type='text' value={requirement?.bloodGroup} onChange={e => setRequirement({ ...requirement, bloodGroup: e?.trim().toUpperCase() })} style={{ textTransform: "uppercase" }} />
                         </div>
                         <div>
                             <textarea placeholder='Write a reason for this requirement' style={{ minHeight: "10em" }} onChange={e => setRequirement({ ...requirement, reason: e.target.value })} />
