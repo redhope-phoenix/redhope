@@ -116,7 +116,7 @@ export const CreateCampaign = () => {
                     <label htmlFor='commit-check-box' className='m-0'>I commit that all the given informations are correct.</label>
                 </div>
                 <div>
-                    <button className="ph-btn ph-btn-primary py-2 px-4" onClick={handleUploadCampaign} disabled={!commitCheck || loading}>{loading ? "Creating campaign..." : "Creat campaign"}</button>
+                    <button className="ph-btn ph-btn-primary py-2 px-4" onClick={handleUploadCampaign} disabled={!commitCheck || loading}>{loading ? "Creating campaign..." : "Share campaign"}</button>
                 </div>
             </div>
         </div>
