@@ -29,7 +29,7 @@ function App() {
     <>
       {showNav && <Navbar />}
       <main>
-        {(showNav && isAuthenticated !== null && isAuthenticated && !currentUser?.isBloodGropAdded && !currentUser?.isContactInfoFilled) &&
+        {(showNav && currentUser && !currentUser.isBloodGropAdded && !currentUser.isContactInfoFilled) &&
           <div style={{ width: "100%" }} className='d-flex justify-content-center'>< div className='ph-nav-flag' onClick={() => navigate("/profile-edit")}>
             <div>Complete your profile to access the all features. Add address and blood group.</div>
             <div><span><i class="ri-arrow-right-s-line"></i></span></div>

@@ -105,7 +105,7 @@ const RemoveConfirmPopup = ({ openState, onClose, onConfirm, campaignId }) => {
             </div>
             <div className='d-flex gap-2 justify-content-end'>
                 <button className="ph-btn" onClick={onClose}>Close</button>
-                <button className="ph-btn ph-btn-danger" onClick={handleCancel} disabled={loading}>Remove</button>
+                <button className="ph-btn ph-btn-danger" onClick={handleCancel} disabled={loading}>{loading ? "Removing..." : "Remove"}</button>
             </div>
         </PopupBox>
     )
@@ -139,7 +139,7 @@ const ReportPopup = ({ openState, onClose, onConfirm, campaignId }) => {
             </div>
             <div className='d-flex gap-2 justify-content-end'>
                 <button className="ph-btn" onClick={onClose}>Close</button>
-                <button className="ph-btn ph-btn-primary" onClick={handelReport} disabled={loading}>Confirm Report</button>
+                <button className="ph-btn ph-btn-primary" onClick={handelReport} disabled={loading}>{loading ? "Creating report..." : "Confirm report"}</button>
             </div>
         </PopupBox>
     )

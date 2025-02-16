@@ -85,7 +85,7 @@ export const Home = () => {
                     <h5>Campaigns</h5>
                 </div>
                 <div className='d-flex align-items-center gap-3 mb-3 ph-feed-filter-btn' onClick={(e) => { e.stopPropagation(); setOpenFilter(!openFilter) }}>
-                    <div><strong>Filter</strong><span><i class="ri-arrow-right-s-fill"></i></span></div>
+                    <div><strong>Filter</strong><span><i className="ri-arrow-right-s-fill"></i></span></div>
                     <div>
                         <div>{filter.name}</div>
                         <div>

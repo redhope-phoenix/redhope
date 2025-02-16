@@ -23,7 +23,7 @@ export const SelectionInput = ({ list = [], value = '', placeholder = '', onChan
         <div className='ph-section-input'>
             <div className={`ph-selection-preview ${openDropDown && "ph-slection-clicked"}`} onClick={handleOpenDropDown}>
                 <span>{selection || placeholder || "Select"}</span>
-                <span style={{ display: "block", rotate: openDropDown ? "180deg" : "0deg", transition: "rotate 0.2s" }}><i class="ri-arrow-down-s-line"></i></span>
+                <span style={{ display: "block", rotate: openDropDown ? "180deg" : "0deg", transition: "rotate 0.2s" }}><i className="ri-arrow-down-s-line"></i></span>
             </div>
             {list?.length != 0 && <div className='d-flex justify-content-center'>
                 <Dropdown className='ph-selection-drop-down' openState={openDropDown} closeOnBackClick onClose={() => setOpenDropDown(false)}>

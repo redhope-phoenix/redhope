@@ -33,7 +33,7 @@ export const Navbar = () => {
                     </div>
                 </div>
             </nav>
-            
+
         </header >
     )
 }
@@ -64,7 +64,7 @@ const NavOptDropDown = ({ openState, onClose }) => {
                         <div className='mb-3'>
                             <button className="ph-btn text-danger" onClick={handleLogout} disabled={logoutLoad} >
                                 <span><i className="ri-logout-box-line"></i></span>
-                                <span>Logout</span>
+                                <span>{logoutLoad ? "Loging out..." : "Log out"}</span>
                             </button>
                         </div>
                     </> :

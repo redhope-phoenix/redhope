@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import "./requestPage.style.css"
 import axios from '../../configs/axios-configs';
-import { useCurrentUser } from '../../hooks/current-user';
 import { toast } from 'react-toastify';
 import { PopupBox } from '../../components/popup-box/PopupBox';
 import AuthContext from '../../contexts/AuthContext';
@@ -196,7 +195,7 @@ const MarkVerifyPopup = ({ openState, onClose, onConfirm, requestId }) => {
             </div>
             <div className='d-flex gap-2 justify-content-end'>
                 <button className="ph-btn" onClick={onClose}>Close</button>
-                <button className="ph-btn ph-btn-primary" onClick={handleFulfillRequest} disabled={loading}>Fulfill request</button>
+                <button className="ph-btn ph-btn-primary" onClick={handleFulfillRequest} disabled={loading}>{loading ? "Updating..." : "Fulfill request"}</button>
             </div>
         </PopupBox>
     )
@@ -228,7 +227,7 @@ const CancelConfirmPopup = ({ openState, onClose, onConfirm, requestId }) => {
             </div>
             <div className='d-flex gap-2 justify-content-end'>
                 <button className="ph-btn" onClick={onClose}>Close</button>
-                <button className="ph-btn ph-btn-danger" onClick={handleCancel} disabled={loading}>Confirm cancel</button>
+                <button className="ph-btn ph-btn-danger" onClick={handleCancel} disabled={loading}>{loading ? "Updating..." : "Confirm cancel"}</button>
             </div>
         </PopupBox>
     )
@@ -263,7 +262,7 @@ const HelpSendPopUp = ({ openState, onClose, onConfirm, requestId }) => {
             </div>
             <div className='d-flex gap-2 justify-content-end'>
                 <button className="ph-btn" onClick={onClose}>Close</button>
-                <button className="ph-btn ph-btn-primary" onClick={handleHelp} disabled={loading}>Confirm help</button>
+                <button className="ph-btn ph-btn-primary" onClick={handleHelp} disabled={loading}>{loading ? "Sending help..." : "Confirm help"}</button>
             </div>
         </PopupBox>
     )
@@ -297,7 +296,7 @@ const ReportPopup = ({ openState, onClose, onConfirm, requestId }) => {
             </div>
             <div className='d-flex gap-2 justify-content-end'>
                 <button className="ph-btn" onClick={onClose}>Close</button>
-                <button className="ph-btn ph-btn-primary" onClick={handelReport} disabled={loading}>Confirm Report</button>
+                <button className="ph-btn ph-btn-primary" onClick={handelReport} disabled={loading}>{loading ? "Creating report..." : "Confirm report"}</button>
             </div>
         </PopupBox>
     )

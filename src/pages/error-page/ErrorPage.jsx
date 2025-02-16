@@ -14,7 +14,7 @@ export const ErrorPage = () => {
                 <div className='hb-error-img-box'><img src={require("../../assets/img/error-page.gif")} alt="" /></div>
                 <div className='mb-3'><h2>OOPS! Page not found</h2></div>
                 <div className='d-flex gap-3'>
-                    <button className="ph-btn ph-btn-primary" onClick={() => window.location.reload()}><span><i class="ri-refresh-line"></i></span><span>Refresh</span></button>
+                    <button className="ph-btn ph-btn-primary" onClick={() => window.location.reload()}><span><i className="ri-refresh-line"></i></span><span>Refresh</span></button>
                     <button className="ph-btn ph-btn-shadow" onClick={() => navigate("/")}>Back to Home</button>
                 </div>
             </div>
