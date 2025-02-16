@@ -8,10 +8,11 @@ import blankPageSvg from "../../assets/svg/blank-page.svg"
 import { useNavigate } from 'react-router-dom';
 import { Dropdown } from '../../components/dropdown/Dropdown';
 import AuthContext from '../../contexts/AuthContext';
+import { useCurrentUser } from '../../hooks/current-user';
 
 export const Home = () => {
     const navigate = useNavigate();
-    const { currentUser } = useContext(AuthContext);
+    const currentUser = useCurrentUser();
     // handle filter
     const [openFilter, setOpenFilter] = useState(false);
     const filterList = [
@@ -33,14 +34,15 @@ export const Home = () => {
 
             setFilter(filterList[1])
         }
-    }, [currentUser]);
+    }, [currentUser, currentUser]);
 
     // handle feed
     const [campaignList, setCampaignList] = useState(null);
     useEffect(() => {
         const fetchList = async () => {
             try {
-                await axios.get("/campaign/campaign-feed", { filter, pinCode: currentUser?.pinCode })
+                setCampaignList(null)
+                await axios.get(`/campaign/campaign-feed?filter=${filter?.value}&pincode=${currentUser?.pinCode || undefined}`)
                     .then(res => {
                         setCampaignList(res?.data?.data);
                     })
@@ -49,7 +51,7 @@ export const Home = () => {
             }
         }
         fetchList();
-    }, []);
+    }, [filter, currentUser]);
 
     // separates for todays campaigns
     const [todaysCampaignList, setTodaysCampaignList] = useState(null);
@@ -90,7 +92,7 @@ export const Home = () => {
                             <Dropdown openState={openFilter} onClose={() => setOpenFilter(false)} closeOnBackClick>
                                 <div>
                                     {filterList.map((item, index) => {
-                                        return <div key={index} onClick={() => { setFilter(item); setOpenFilter(false) }} className={`ph-filter-opt ${filter?.value === item?.value&&"ph-filter-opt-active"}`}>{item.name}</div>
+                                        return <div key={index} onClick={() => { setFilter(item); setOpenFilter(false) }} className={`ph-filter-opt ${filter?.value === item?.value && "ph-filter-opt-active"}`}>{item.name}</div>
                                     })}
                                 </div>
                             </Dropdown>
