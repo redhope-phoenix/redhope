@@ -106,7 +106,6 @@ export const SignupPage = () => {
                 .then(async () => {
                     await axios.post("/user/login", input)
                         .then(() => {
-                            setIsAuthenticated(true);
                             window.location.href = redirectUri ? `${window.location.origin}${redirectUri}` : window.location.origin;
                         })
                 })
