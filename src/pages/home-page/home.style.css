@@ -37,6 +37,7 @@
     transition: 0.2s;
     padding: 0.2em 0.7em;
     border-radius: 10px;
+    margin-bottom: 0.1em;
 }
 .ph-filter-opt:hover{
     background-color: #64646425;

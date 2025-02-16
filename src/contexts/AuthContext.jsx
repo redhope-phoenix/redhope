@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react'
 import axios from '../configs/axios-configs';
 import { Spinner } from '../components/loaders/Spinner';
 import { useCurrentUser } from '../hooks/current-user';
+import "../styles/utils.css"
 
 const AuthContext = createContext();
 
@@ -32,8 +33,9 @@ export const AuthProvider = ({ children }) => {
 
 const LoadPage = () => {
     return (
-        <div style={{ width: "100vw", height: "100vh" }} className='d-flex align-items-center justify-content-center'>
-            <Spinner width={60} colorCode={1} />
+        <div style={{ width: "100vw", height: "100vh", flexDirection: "column" }} className='d-flex align-items-center justify-content-center ph-blink-anim'>
+            <img src={require("../assets/img/redhope-short.png")} alt="" width={150} />
+            <div>Please wait...</div>
         </div>
     )
 }

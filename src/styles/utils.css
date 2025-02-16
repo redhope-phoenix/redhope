@@ -163,6 +163,22 @@ textarea:focus {
 /***** End Display css *****/
 
 /***** animation css *****/
+.ph-blink-anim {
+    animation: blinkAnim 1s infinite;
+}
+
+@keyframes blinkAnim {
+
+    0%,
+    100% {
+        filter: brightness(0.8);
+    }
+
+    50% {
+        filter: brightness(1);
+    }
+}
+
 .ph-fadein-anim {
     animation: fadeIn 0.4s 1;
 }
