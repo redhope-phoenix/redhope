@@ -1,23 +1,26 @@
 import React from 'react'
 import "./campaign-item.style.css"
+import { formatDate } from '../../utils/date-converter'
+import { useNavigate } from 'react-router-dom'
 
-export const CampaignItem = () => {
+export const CampaignItem = ({ data }) => {
+    const navigate = useNavigate();
     return (
-        <li class="ph-camp-card">
-            <div class="ph-camp-card-img-box"><img src={require("../../assets/img/sample-img.jpg")} alt="" /></div>
-            <div class="ph-camp-info-box">
-                <div>Lorem ipsum dolor sit.</div>
+        <li className="ph-camp-card">
+            <div className="ph-camp-card-img-box"><img src={data?.leaflet} alt="" /></div>
+            <div className="ph-camp-info-box">
+                <div>{data?.title}</div>
                 <div>
                     <strong>Date - </strong>
-                    <span>17/02/25</span>
+                    <span>{formatDate(data?.date)?.formattedDate}</span>
                 </div>
                 <div>
-                    <strong>Venue - </strong>
-                    <span>Jolu</span>
+                    <strong>Pincode - </strong>
+                    <span>{data?.pincode}</span>
                 </div>
             </div>
             <div className='ph-camp-item-menue'>
-                <button className="ph-btn ph-btn-primary"><span>View camp</span></button>
+                <button className="ph-btn ph-btn-primary" onClick={() => navigate(`/campaign/${data?._id}`)}><span>View camp</span></button>
             </div>
         </li>
     )

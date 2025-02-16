@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: calc(100vh - 6em);
 }
 
 .ph-auth-box {
@@ -42,6 +42,7 @@
     width: 100%;
     padding: 1em;
     display: grid;
+    overflow-y: auto;
 }
 
 .ph-auth-btn {

@@ -1,7 +1,44 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { PopInput } from '../../components/inputs/PopInput'
+import { useCurrentUser } from '../../hooks/current-user';
+import axios from '../../configs/axios-configs';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export const RequestDonatePage = () => {
+    const navigate = useNavigate();
+    const currentUser = useCurrentUser();
+    // states for inputs
+    const [contactInfo, setContactInfo] = useState({});
+    const [requirement, setRequirement] = useState({});
+    const [commitCheck, setCommitCheck] = useState(false);
+    useEffect(() => {
+        if (currentUser) {
+            setContactInfo({ ...contactInfo, applicant: currentUser?.userName, email: currentUser?.email, phoneNo: currentUser?.phoneNo, address: currentUser?.address, pincode: currentUser?.pincode });
+            setRequirement({ ...requirement, bloodGroup: currentUser?.bloodGroup });
+        }
+    }, [currentUser]);
+    // send request
+    const [loading, setLoading] = useState(false);
+    const handleRequestSend = async () => {
+        try {
+            setLoading(true);
+            await axios.post("/request/create-request", { requestedBy: currentUser?._id, ...contactInfo, ...requirement, date: requirement?.date })
+                .then((res) => {
+                    toast.success("Request submitted successfully");
+                    navigate(`/request/${res.data?.data?.id}`);
+                })
+        } catch (error) {
+            toast.error("Please fill all the given fields");
+        }
+        setLoading(false);
+    }
+
+    // document title
+    useEffect(() => {
+        document.title = "Create donation request - Redhope"
+    }, []);
+
     return (
         <div className='container'>
             <div className='mb-4'>
@@ -14,45 +51,48 @@ export const RequestDonatePage = () => {
                     <div className='mb-3'>
                         <h6>Contact details</h6>
                         <div className='mb-2'>
-                            <PopInput placeholder='Applicant full name' />
+                            <PopInput placeholder='Applicant full name' value={contactInfo?.applicant} onChange={e => setContactInfo({ ...contactInfo, applicant: e })} />
                         </div>
                         <div className='mb-2'>
-                            <PopInput placeholder='Phone number (+91)' type='number' />
+                            <PopInput placeholder='Phone number (+91)' type='number' value={contactInfo?.phoneNo} onChange={e => setContactInfo({ ...contactInfo, phoneNo: e })} />
                         </div>
                         <div className='mb-2'>
-                            <PopInput placeholder='Email id' type='email' />
+                            <PopInput placeholder='Email id' type='email' value={contactInfo?.email} onChange={e => setContactInfo({ ...contactInfo, email: e })} />
                         </div>
                         <div className='mb-2'>
-                            <PopInput placeholder='Address line 1' type='text' />
+                            <PopInput placeholder='Address line 1' type='text' value={contactInfo?.address?.addressLine} onChange={e => setContactInfo({ ...contactInfo, address: { ...contactInfo?.address, addressLine: e } })} />
                         </div>
                         <div className='mb-2 d-flex gap-2'>
-                            <PopInput placeholder='District' type='text' className='ph-form-input-3-width' />
-                            <PopInput placeholder='State' type='text' className='ph-form-input-3-width' />
+                            <PopInput placeholder='District' type='text' className='ph-form-input-3-width' value={contactInfo?.address?.district} onChange={e => setContactInfo({ ...contactInfo, address: { ...contactInfo?.address, district: e } })} />
+                            <PopInput placeholder='State' type='text' className='ph-form-input-3-width' value={contactInfo?.address?.state} onChange={e => setContactInfo({ ...contactInfo, address: { ...contactInfo?.address, state: e } })} />
                             <PopInput placeholder='Nationality' type='text' value='India' disabled={true} className='ph-form-input-3-width' />
                         </div>
                         <div className='mb-2'>
-                            <PopInput placeholder='Postal code' type='number' />
+                            <PopInput placeholder='Postal code' type='number' value={contactInfo?.pincode} onChange={e => setContactInfo({ ...contactInfo, pincode: e })} />
                         </div>
                     </div>
                     <div className='mb-4'>
-                        <h6>Donation details</h6>
+                        <h6>Requirements</h6>
                         <div className='mb-2'>
-                            <PopInput placeholder='Blood group ( eg. B+ )' type='text' />
+                            <PopInput placeholder='Blood group ( eg. B+ )' type='text' value={requirement?.bloodGroup} onChange={e => setRequirement({ ...requirement, bloodGroup: e?.toUpperCase() })} style={{ textTransform: "uppercase" }} />
+                        </div>
+                        <div>
+                            <textarea placeholder='Write a reason for this requirement' style={{ minHeight: "10em" }} onChange={e => setRequirement({ ...requirement, reason: e.target.value })} />
                         </div>
                         <div>
                             <h6>Required within date</h6>
-                            <input type="date" name="" />
+                            <input type="date" name="" min={new Date().toISOString().split("T")[0]} onChange={(e) => setRequirement({ ...requirement, date: e.target.value })} />
                         </div>
                     </div>
                 </form>
             </div>
             <div className='mb-3'>
                 <div className='d-flex gap-2 mb-2'>
-                    <input type="checkbox" name="" id="commit-check-box" />
-                    <label htmlFor='commit-check-box' className='m-0'>I commit that all the given inforfations are correct.</label>
+                    <input type="checkbox" name="" id="commit-check-box" onChange={e => setCommitCheck(e.target.checked)} />
+                    <label htmlFor='commit-check-box' className='m-0'>I commit that all the given informations are correct.</label>
                 </div>
                 <div>
-                    <button className="ph-btn ph-btn-primary py-2 px-4">Submit request</button>
+                    <button className="ph-btn ph-btn-primary py-2 px-4" disabled={!commitCheck || loading} onClick={handleRequestSend}>{loading ? "Sending request..." : "Submit request"}</button>
                 </div>
             </div>
 

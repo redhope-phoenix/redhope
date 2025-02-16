@@ -50,6 +50,10 @@
 /***** End Pop input css *****/
 
 /***** Selection input css *****/
+.ph-section-input {
+    position: relative;
+}
+
 .ph-selection-preview {
     padding: 1em;
     border: 1px solid var(--ph-l-grey);
@@ -71,8 +75,8 @@
 }
 
 .ph-selection-drop-down {
-    padding: 0.5em;
-    min-width: 7em;
+    padding: 0em;
+    width: 100%;
     max-height: 50vh;
     overflow-y: auto;
     margin-top: 5px;
@@ -86,8 +90,22 @@
             width: 100%;
             justify-content: center;
             cursor: pointer;
+            padding: 0.4em 0.7em;
+            transition: background-color 0.3s;
         }
     }
+}
+
+.ph-selection-drop-down ul li:hover {
+    background-color: #7f7f7f1e;
+}
+
+.ph-selection-drop-down ul li:active {
+    background-color: #3b3b3b1e;
+}
+
+.ph-selection-active {
+    background-color: #7f7f7f1e;
 }
 
 /***** End Selection input css *****/

@@ -5,8 +5,6 @@
 }
 
 .ph-request-btn {
-    background-color: var(--ph-l-green);
-    color: #ffff;
     width: 20em;
     height: 3em;
     justify-content: center;
@@ -21,6 +19,35 @@
     display: flex;
     flex-flow: wrap;
     gap: 2em;
+}
+
+.ph-feed-filter-btn{
+    padding: 0.3em 0.5em;
+    cursor: pointer;
+    width: fit-content;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.ph-feed-filter-btn:active{
+    background-color: var(--ph-l-grey);
+}
+
+.ph-filter-opt{
+    transition: 0.2s;
+    padding: 0.2em 0.7em;
+    border-radius: 10px;
+}
+.ph-filter-opt:hover{
+    background-color: #64646425;
+}
+
+.ph-filter-opt:active{
+    background-color: #6464647d;
+}
+
+.ph-filter-opt-active{
+    background-color: #64646425;
 }
 
 /***** media queries *****/

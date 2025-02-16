@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./input.style.css"
 
-export const PopInput = ({ type = "text", placeholder = "", props, value = '', onChange, className = '', inputClass = '', disabled = false }) => {
+export const PopInput = ({ type = "text", placeholder = "", style, value = '', onChange, className = '', inputClass = '', disabled = false }) => {
     // generate random id 
     const id = Math.random().toFixed(3);
 
@@ -43,7 +43,7 @@ export const PopInput = ({ type = "text", placeholder = "", props, value = '', o
     return (
         <div className={`ph-pop-input ${className} ${isFocus ? "ph-input-active" : ''} ${disabled && "ph-input-disabled"}`}>
             <label htmlFor={`pop-input-${id}`} className='ph-pop-input-placeholder'>{placeholder}</label>
-            <input className={inputClass} type={inputType} placeholder='' id={`pop-input-${id}`} onChange={e => setInput(e.target.value)} onFocus={onFocus} onBlur={onBlur} value={input} />
+            <input className={inputClass} type={inputType} placeholder='' id={`pop-input-${id}`} onChange={e => setInput(e.target.value)} onFocus={onFocus} onBlur={onBlur} value={input} style={style} />
             {type === "password" && <div className='c-pointer' onClick={handlePasswordView}><i className={passwordView ? "ri-eye-line" : "ri-eye-close-line"}></i></div>}
         </div>
     )

@@ -2,27 +2,55 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'remixicon/fonts/remixicon.css';
 import "./styles/utils.css"
 import "./styles/root.css"
+import 'react-toastify/dist/ReactToastify.css';
 
 import { Navbar } from './components/navbar/Navbar';
 import { Home } from './pages/home-page/Home';
 import { AppRoutes } from './routes/App.routes';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { ToastContainer } from 'react-toastify';
+import { useLocation, useNavigate } from 'react-router-dom';
+import AuthContext from './contexts/AuthContext';
 
 function App() {
   const [showNav, setShowNav] = useState(true);
+  const location = useLocation();
   useEffect(() => {
-    if (window.location.pathname.includes("/auth/")) setShowNav(false);
+    if (location.pathname.includes("/auth/")) setShowNav(false);
     else setShowNav(true);
-  }, [])
+  }, [location])
+
+  const navigate = useNavigate()
+  const { currentUser } = useContext(AuthContext);
+
   return (
     <>
       {showNav && <Navbar />}
       <main>
+        {(!currentUser?.isBloodGropAdded && !currentUser?.isContactInfoFilled) &&
+          <div style={{ width: "100%" }} className='d-flex justify-content-center'>< div className='ph-nav-flag' onClick={() => navigate("/profile-edit")}>
+            <div>Complete your profile to access the all features. Add address and blood group.</div>
+            <div><span><i class="ri-arrow-right-s-line"></i></span></div>
+          </div></div>}
+
         <AppRoutes />
       </main>
       <footer className='text-center my-4 mt-5'>
         &copy;2024 Redhope. All rights are reserverd
       </footer>
+
+      <ToastContainer
+        position="top-center"
+        autoClose={2500}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={"light"}
+      />
     </>
   );
 }

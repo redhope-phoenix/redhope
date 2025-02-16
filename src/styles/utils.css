@@ -1,8 +1,13 @@
-/***** button css *****/
 .container {
     min-height: calc(100vh - 11.5em);
+    animation: fadeIn 0.4s 1;
 }
 
+.hb-error-img-box img {
+    width: 350px;
+}
+
+/***** button css *****/
 .ph-btn {
     background-color: transparent;
     border: 1px solid transparent;
@@ -23,6 +28,11 @@
     filter: brightness(0.8);
 }
 
+.ph-btn:disabled {
+    filter: brightness(0.9);
+    cursor: not-allowed;
+}
+
 .ph-btn-primary {
     background-color: var(--ph-l-green);
     border-radius: 10px;
@@ -33,10 +43,21 @@
     box-shadow: 0 0 9px 0 #aaaaaa73;
     border-radius: 10px;
     justify-content: center;
+    background-color: #ffff;
 }
 
 .ph-btn-shadow:hover {
     background-color: #e1e1e1;
+}
+
+.ph-btn-shadow:disabled {
+    background-color: #f4f4f477;
+}
+
+.ph-btn-danger {
+    background-color: #f14d4d;
+    border-radius: 10px;
+    color: #ffff;
 }
 
 /***** End button css *****/
@@ -45,6 +66,11 @@
 .ph-url-colored {
     text-decoration: none;
     color: #5076f5;
+}
+
+.ph-url {
+    text-decoration: none;
+    color: inherit;
 }
 
 .ph-f-sm {
@@ -129,12 +155,44 @@ textarea:focus {
     gap: 0.5em;
 }
 
-.ph-d-grid-2__first-prior{
+.ph-d-grid-2__first-prior {
     display: grid;
     grid-template-columns: 1fr auto;
 }
 
 /***** End Display css *****/
+
+/***** animation css *****/
+.ph-fadein-anim {
+    animation: fadeIn 0.4s 1;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.ph-fadeout-anim {
+    animation: fadeOut 0.4s 1;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/***** End animation css *****/
+
 
 
 /***** media queries *****/
@@ -143,5 +201,12 @@ textarea:focus {
         max-width: unset !important;
     }
 }
+
+@media screen and (max-width: 475px) {
+    .hb-error-img-box img {
+        width: 80vw;
+    }
+}
+
 
 /***** End media queries *****/

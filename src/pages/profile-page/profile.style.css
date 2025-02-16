@@ -145,6 +145,21 @@
     }
 }
 
+@media screen and (max-width: 570px) {
+    .ph-profile-img-sec {
+        padding: 0.5em;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5em;
+    }
+
+    .ph-profile-user-gen-det-box{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 @media screen and (max-width: 425px) {
     .ph-profile-img-sec {
         padding: 0.5em;
