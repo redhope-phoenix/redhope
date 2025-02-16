@@ -76,11 +76,11 @@ export const CreateCampaign = () => {
                         <div className='mb-2 d-flex gap-2'>
                             <div className='ph-form-input-2-width'>
                                 <h6>Campaign date</h6>
-                                <input type="date" name="" id="" min={new Date().toISOString().split("T")[0]} onChange={e => setCampaignInfo({ ...campaignInfo, date: e.target.value })} />
+                                <input type="date" name="" placeholder='Campaign date' id="" min={new Date().toISOString().split("T")[0]} onChange={e => setCampaignInfo({ ...campaignInfo, date: e.target.value })} />
                             </div>
                             <div className='ph-form-input-2-width'>
                                 <h6>Campaign time</h6>
-                                <input type="time" name="" id="" onChange={e => setCampaignInfo({ ...campaignInfo, time: e.target.value })} />
+                                <input type="time" name="" id="" placeholder='Campaign time' onChange={e => setCampaignInfo({ ...campaignInfo, time: e.target.value })} />
                             </div>
                         </div>
                         <div className='mb-2'>

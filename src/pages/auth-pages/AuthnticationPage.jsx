@@ -51,7 +51,7 @@ export const LoginPage = () => {
             })
             .catch((error) => {
                 if (error.response.status === 402) toast.error("User does not exist")
-                else if (error.response.status === 401) toast.error("Incorrect password")
+                else if (error.response.status === 403) toast.error("Incorrect password")
                 console.log(error);
             })
 
@@ -130,7 +130,7 @@ export const SignupPage = () => {
                 <div className='mb-2'><PopInput placeholder='Enter your password' type='password' onChange={e => setInput({ ...input, password: e })} /></div>
                 <div className='mb-2'>
                     <h6 className='mb-0 px-2'>Date of birth</h6>
-                    <input type="date" name="" id="" onChange={e => setInput({ ...input, dateOfBirth: e.target.value })} />
+                    <input type="date" name="" id="" onChange={e => setInput({ ...input, dateOfBirth: e.target.value })} placeholder='Date of birth'/>
                 </div>
                 <div>By continuing you are accepting our <Link to={'/terms'} className='ph-url-colored'>Terms & conditions</Link></div>
             </form>

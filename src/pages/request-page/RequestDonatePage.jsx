@@ -81,7 +81,7 @@ export const RequestDonatePage = () => {
                         </div>
                         <div>
                             <h6>Required within date</h6>
-                            <input type="date" name="" min={new Date().toISOString().split("T")[0]} onChange={(e) => setRequirement({ ...requirement, date: e.target.value })} />
+                            <input type="date" placeholder='Request within date' name="" min={new Date().toISOString().split("T")[0]} onChange={(e) => setRequirement({ ...requirement, date: e.target.value })} />
                         </div>
                     </div>
                 </form>
