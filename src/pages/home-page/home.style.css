@@ -15,13 +15,48 @@
     gap: 1em;
 }
 
+.ph-service-list {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.ph-service-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    border-radius: 10px;
+    background-color: #d8d8d851;
+    width: 150px;
+    height: 150px;
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: 0.3s;
+
+    & img {
+        width: 60%;
+    }
+}
+
+.ph-service-item:hover {
+    scale: 1.05;
+}
+
+.ph-service-item:active {
+    filter: brightness(0.8);
+}
+
 .ph-camps-list {
     display: flex;
     flex-flow: wrap;
     gap: 2em;
 }
 
-.ph-feed-filter-btn{
+.ph-feed-filter-btn {
     padding: 0.3em 0.5em;
     cursor: pointer;
     width: fit-content;
@@ -29,29 +64,41 @@
     transition: 0.3s;
 }
 
-.ph-feed-filter-btn:active{
+.ph-feed-filter-btn:active {
     background-color: var(--ph-l-grey);
 }
 
-.ph-filter-opt{
+.ph-filter-opt {
     transition: 0.2s;
     padding: 0.2em 0.7em;
     border-radius: 10px;
     margin-bottom: 0.1em;
 }
-.ph-filter-opt:hover{
+
+.ph-filter-opt:hover {
     background-color: #64646425;
 }
 
-.ph-filter-opt:active{
+.ph-filter-opt:active {
     background-color: #6464647d;
 }
 
-.ph-filter-opt-active{
+.ph-filter-opt-active {
     background-color: #64646425;
 }
 
 /***** media queries *****/
+@media screen and (max-width: 540px) {
+    .ph-service-list {
+        gap: 0.6em;
+    }
+
+    .ph-service-item {
+        width: 30vw;
+        padding: 0.5em;
+    }
+}
+
 @media screen and (max-width: 425px) {
     .ph-request-btn {
         width: 100%;

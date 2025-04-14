@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { PopInput } from '../../components/inputs/PopInput'
 import { useCurrentUser } from '../../hooks/current-user';
 import axios from '../../configs/axios-configs';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import AuthContext from '../../contexts/AuthContext';
 
 export const RequestDonatePage = () => {
     const navigate = useNavigate();
-    const currentUser = useCurrentUser();
+    const currentUser = useContext(AuthContext);
     // states for inputs
     const [contactInfo, setContactInfo] = useState({});
     const [requirement, setRequirement] = useState({});
@@ -77,7 +78,7 @@ export const RequestDonatePage = () => {
                             <PopInput placeholder='Blood group ( eg. B+ )' type='text' value={requirement?.bloodGroup} onChange={e => setRequirement({ ...requirement, bloodGroup: e?.trim().toUpperCase() })} style={{ textTransform: "uppercase" }} />
                         </div>
                         <div>
-                            <textarea placeholder='Write a reason for this requirement' style={{ minHeight: "10em" }} onChange={e => setRequirement({ ...requirement, reason: e.target.value })} />
+                            <textarea className='ph-textarea' placeholder='Write a reason for this requirement' style={{ minHeight: "10em" }} onChange={e => setRequirement({ ...requirement, reason: e.target.value })} />
                         </div>
                         <div>
                             <h6>Required within date</h6>

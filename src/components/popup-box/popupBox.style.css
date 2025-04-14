@@ -4,7 +4,7 @@
     height: 100vh;
     top: 0;
     left: 0;
-    background: radial-gradient(#5d5d5d33, #5d5d5dc4);
+    background: radial-gradient(#5d5d5d33, #5d5d5d64);
     backdrop-filter: blur(5px);
     overflow-y: auto;
     display: flex;
@@ -17,8 +17,8 @@
 
 .ph-popup-box {
     min-width: 20em;
-    background-color: #ffff;
-    box-shadow: 0 0 9px 0 #9b9b9b5a;
+    background-color: var(--ph-bg-color);
+    box-shadow: 0 0 9px 0 var(--ph-shadow-color);
     border-radius: 10px;
     animation: popupInAnim 0.4s 1;
     overflow: hidden;

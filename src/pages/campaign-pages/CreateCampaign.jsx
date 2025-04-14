@@ -4,13 +4,11 @@ import { PopInput } from '../../components/inputs/PopInput'
 import addImgSvg from "../../assets/svg/add-image.svg"
 import { SelectionInput } from '../../components/inputs/SelectionInput'
 import { useNavigate } from 'react-router-dom'
-import { useCurrentUser } from '../../hooks/current-user'
 import axios from '../../configs/axios-configs'
 import { toast } from 'react-toastify'
 
 export const CreateCampaign = () => {
     const navigate = useNavigate();
-    const currentUser = useCurrentUser();
     // states for inputs
     const [campaignInfo, setCampaignInfo] = useState({});
     const [contactInfo, setContactInfo] = useState({});
@@ -44,6 +42,17 @@ export const CreateCampaign = () => {
         document.title = "Create new campaign - Redhope";
     }, []);
 
+    // camaign categories
+    const campCategories = [
+        "Genereal health camp",
+        "Blood donation camp",
+        "Eye check up camp",
+        "Dental check up camp",
+        "Alternative Medicine & Wellness Camps",
+        "Child & Maternal Health Camps",
+        "Health Education & Awareness Camps",
+    ]
+
     return (
         <div className='container'>
             <div className='mb-3'>
@@ -57,7 +66,7 @@ export const CreateCampaign = () => {
                             <PopInput placeholder='Campaign title' onChange={e => setCampaignInfo({ ...campaignInfo, title: e })} />
                         </div>
                         <div className='mb-2'>
-                            <SelectionInput placeholder='Select a category' list={["Genereal health camp", "Blood donation camp", "Eye check up camp"]} onChange={e => setCampaignInfo({ ...campaignInfo, category: e })} />
+                            <SelectionInput placeholder='Select a category' list={campCategories} onChange={e => setCampaignInfo({ ...campaignInfo, category: e })} />
                         </div>
                         <div className='mb-2'>
                             <PopInput placeholder='Address line 1' onChange={e => setContactInfo({ ...contactInfo, address: { ...contactInfo?.address, addressLine: e } })} />
@@ -71,7 +80,7 @@ export const CreateCampaign = () => {
                             <PopInput placeholder='Pin code' type='Number' onChange={e => setContactInfo({ ...contactInfo, pincode: e })} />
                         </div>
                         <div className='mb-2'>
-                            <PopInput placeholder='Contact no. ( If aplicable )' type='Number' onChange={e => setContactInfo({ ...contactInfo, contactNo: e })} />
+                            <PopInput placeholder='Contact no. (Optional)' type='Number' onChange={e => setContactInfo({ ...contactInfo, contactNo: e })} />
                         </div>
                         <div className='mb-2 d-flex gap-2'>
                             <div className='ph-form-input-2-width'>
@@ -84,7 +93,10 @@ export const CreateCampaign = () => {
                             </div>
                         </div>
                         <div className='mb-2'>
-                            <textarea name="" id="" placeholder='Write about the campaign' onChange={e => setCampaignInfo({ ...campaignInfo, description: e.target.value })}></textarea>
+                            <textarea name="" id="" className='ph-textarea' placeholder='Write about the campaign' onChange={e => setCampaignInfo({ ...campaignInfo, description: e.target.value })}></textarea>
+                        </div>
+                        <div className='mb-2'>
+                            <PopInput placeholder='Registration form link (Optional)' type='text' onChange={e => setContactInfo({ ...contactInfo, registrationLink: e })} />
                         </div>
                         <div>
                             <label htmlFor="leaflet-uploader" className='ph-campaign-leaflet-uploader px-2'>

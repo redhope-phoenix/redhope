@@ -8,7 +8,7 @@ export const TermsPage = () => {
     return (
         <div className='container'>
             <h1 className='mb-4'>Terms and Conditions</h1>
-            <p><strong>Effective Date:</strong> 17/02/2025</p>
+            <p><strong>Effective Date:</strong> 18/04/2025</p>
             <p>Welcome to Redhope! By using our website, you agree to comply with and be bound by the following terms and conditions. Please review them carefully.</p>
 
             <h4>1. Use of Our Services</h4>

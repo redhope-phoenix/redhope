@@ -1,0 +1,185 @@
+.ph-assistant-container {
+    height: 87vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.ph-assistant-chat-box {
+    overflow-y: auto;
+    height: 100%;
+    padding: 2em 1em;
+}
+
+.ph-assistant-input-box {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5em;
+    border: 1px solid var(--ph-l-grey);
+    padding: 0.5em;
+    padding-left: 1em;
+    border-radius: 20px;
+    transition: 0.3s;
+    align-items: end;
+    width: 70%;
+    justify-self: center;
+    margin-top: 0.5em;
+}
+
+.ph-assistant-input-box:focus-within {
+    border-color: var(--ph-l-green);
+}
+
+.ph-assistant-textarea {
+    resize: none;
+    width: 100%;
+    min-height: auto;
+    border: none;
+    outline: none;
+    max-height: 17em;
+    transition: height 0.3s;
+    background-color: transparent;
+    color: inherit;
+}
+
+.ph-assistant-send-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    justify-content: center;
+    font-size: 1.7em;
+    font-weight: bold;
+}
+
+.ph-response-loading-text {
+    background: linear-gradient(270deg, var(--ph-l-green), #e1e1e1, var(--ph-l-green));
+    background-size: 800% 800%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 5s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.ph-assistant-query-sample-item{
+    padding: 0.3em 0.7em;
+    border: 1px solid var(--ph-l-green);
+    border-radius: 20px;
+    width: fit-content;
+    background-color: #70707015;
+    cursor: pointer;
+}
+
+/***** Chat bubble css *****/
+.ph-chat-bubble {
+    padding: 0.7em 1em;
+    display: grid;
+    position: relative;
+}
+
+.ph-chat-bubble-user {
+    border-radius: 20px;
+    background-color: var(--ph-l-green);
+    color: #fff;
+    width: fit-content;
+    justify-self: end;
+    margin-bottom: 1em;
+    max-width: 60%;
+}
+
+.ph-chat-bubble-user {
+    & p {
+        margin-bottom: 0;
+    }
+
+    & pre {
+        margin-bottom: 0;
+    }
+}
+
+.ph-chat-bubble-assistant {
+    margin-bottom: 2em;
+    width: 95%;
+}
+
+.ph-chat-bubble {
+    & h1 {
+        font-size: 1.5em !important;
+        margin-bottom: 0.7em !important;
+    }
+
+    & h2 {
+        font-size: 1.5em !important;
+        margin-bottom: 0.7em !important;
+    }
+
+    & h3 {
+        font-size: 1.5em !important;
+        margin-bottom: 0.7em !important;
+    }
+
+    & h4 {
+        font-size: 1.4em !important;
+        margin-bottom: 0.7em !important;
+    }
+
+    & ul {
+        margin-bottom: 1.5em !important;
+
+        & li {
+            margin-bottom: 0.5em !important;
+        }
+    }
+}
+
+.ph-chat-bubble-btn-box {
+    color: black;
+    position: absolute;
+    align-self: flex-end;
+    transform: translate(20px, 25px);
+    opacity: 0;
+}
+
+.ph-chat-bubble:hover .ph-chat-bubble-btn-box {
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.ph-chat-bubble-user .ph-chat-bubble-btn-box {
+    justify-self: end;
+    transform: translate(-20px, 18px);
+}
+
+.ph-chat-bubble-btn-box button {
+    padding: 0.1em 0.3em;
+}
+
+/***** End Chat bubble css *****/
+
+
+/***** Responsive design css *****/
+@media screen and (max-width: 768px) {
+    .ph-assistant-input-box {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    .ph-assistant-input-box {
+        width: 100%;
+    }
+}
+
+/***** End Responsive design css *****/

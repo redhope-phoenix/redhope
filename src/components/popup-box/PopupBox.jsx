@@ -23,7 +23,7 @@ export const PopupBox = ({ children, openState = false, className = '', pauseScr
         if (open)
             document.body.style.overflowY = pauseScroll ? "hidden" : "auto";
         else document.body.style.overflowY = "auto";
-    });
+    }, [open]);
 
     // close on background click
     const boxRef = useRef(null)

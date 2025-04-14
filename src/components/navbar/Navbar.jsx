@@ -4,8 +4,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Dropdown } from '../dropdown/Dropdown';
 import { toast } from 'react-toastify';
 import axios from '../../configs/axios-configs';
-import { useCurrentUser } from '../../hooks/current-user';
 import AuthContext from '../../contexts/AuthContext';
+import aiSvg from "../../assets/svg/doctor-ai.svg"
+import ThemeContext from '../../contexts/ThemeContext';
 
 export const Navbar = () => {
     const navigate = useNavigate();
@@ -22,6 +23,7 @@ export const Navbar = () => {
                     </Link>
                 </div>
                 <div className="ph-nav-opt-box">
+                    <button className="ph-nav-btn " onClick={() => navigate("/health-assistant")} title='Health assistant'><img src={aiSvg} width={30} /></button>
                     <button className="ph-nav-btn " onClick={() => navigate("/notifications")}><i className="ri-notification-4-line fs-5"></i></button>
                     <div>
                         <button className="ph-nav-btn" onClick={(e) => { e.stopPropagation(); setOpenDropDown(!openDropDown) }}>
@@ -52,6 +54,14 @@ const NavOptDropDown = ({ openState, onClose }) => {
         setLogoutLoad(false);
     }
 
+    // handle theme change
+    const { theme, setTheme } = useContext(ThemeContext);
+
+    const handleThemeChange = (e) => {
+        const theme = e.target.value;
+        setTheme(theme);
+    }
+
     return (
         <Dropdown openState={openState} onClose={onClose} closeOnBackClick >
             <div className='ph-nav-dropdown-content'>
@@ -73,6 +83,22 @@ const NavOptDropDown = ({ openState, onClose }) => {
                         <span>Signin</span>
                     </div>
                 }
+                <div className='d-flex justify-content-center mb-3'>
+                    <div className='ph-nav-theme-opt-box'>
+                        <label htmlFor="ph-theme-opt-1" className={`ph-theme-opt ${theme === "light" && "ph-theme-opt-active"}`} >
+                            <input type="radio" name="ph-theme-opt" id="ph-theme-opt-1" className='d-none' value={"light"} onChange={handleThemeChange} />
+                            <span className='ph-theme-opt-label'><i className="ri-sun-fill"></i></span>
+                        </label>
+                        <label htmlFor="ph-theme-opt-2" className={`ph-theme-opt ${theme === "dark" && "ph-theme-opt-active"}`}>
+                            <input type="radio" name="ph-theme-opt" id="ph-theme-opt-2" className='d-none' value={"dark"} onChange={handleThemeChange} />
+                            <span className='ph-theme-opt-label'><i className="ri-moon-fill"></i></span>
+                        </label>
+                        <label htmlFor="ph-theme-opt-3" className={`ph-theme-opt ${theme === "system" && "ph-theme-opt-active"}`}>
+                            <input type="radio" name="ph-theme-opt" id="ph-theme-opt-3" className='d-none' value={"system"} onChange={handleThemeChange} />
+                            <span className='ph-theme-opt-label'><i className="ri-device-fill"></i></span>
+                        </label>
+                    </div>
+                </div>
                 <div>
                     <div>
                         <Link to="/privacy" onClick={onClose} className="ph-url-colored">Privacy policy</Link>

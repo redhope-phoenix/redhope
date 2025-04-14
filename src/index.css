@@ -6,6 +6,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  background-color: var(--ph-bg-color);
+  color: var(--ph-body-color);
+  transition: background-color 0.2s, color 0.2s;
 }
 
 code {

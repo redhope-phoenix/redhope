@@ -14,6 +14,7 @@ import { PreloginRoutes } from './Prelogin.routes'
 import { ErrorPage } from '../pages/error-page/ErrorPage'
 import { PrivacyPolicyPage } from '../pages/policy-pages/PrivacyPolicyPage'
 import { TermsPage } from '../pages/policy-pages/TermsPage'
+import { Assistant } from '../pages/health-assistant/Assistant'
 
 export const AppRoutes = () => {
     return (
@@ -36,6 +37,8 @@ export const AppRoutes = () => {
             <Route path='/campaign/:campaignId' element={<CampaignViewPage />} />
             <Route path='/create-campaign' element={<PrivateRoutes children={<CreateCampaign />} />} />
             <Route path='/notifications' element={<PrivateRoutes children={<NotificationPage />} />} />
+
+            <Route path="/health-assistant" element={<PrivateRoutes children={<Assistant />} />} />
 
             <Route path='/privacy' element={<PrivacyPolicyPage />} />
             <Route path='/terms' element={<TermsPage />} />

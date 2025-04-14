@@ -6,6 +6,7 @@ import { PopupBox } from '../../components/popup-box/PopupBox';
 import { toast } from 'react-toastify';
 import AuthContext from '../../contexts/AuthContext';
 import shareContent from '../../utils/share-function';
+import { TableLoader } from '../../components/loaders/TableLoader';
 
 export const CampaignViewPage = () => {
     const navigate = useNavigate();
@@ -59,13 +60,15 @@ export const CampaignViewPage = () => {
             </div>}
             <div className='mb-4'>
                 <h6>Campaign details</h6>
-                <div className='ph-table'>
+                {campaign && <div className='ph-table'>
                     <div><strong>Date </strong><span>{formatDate(campaign?.date)?.formattedDate}</span></div>
                     <div><strong>Time </strong><span>{formatDate(campaign?.date)?.formattedTime}</span></div>
                     <div><strong>Address </strong><span>{campaign?.address?.addressLine}, {campaign?.address?.district}, {campaign?.address?.state}</span></div>
                     <div><strong>Pin code </strong><span>{campaign?.pincode}</span></div>
                     {campaign?.contactNo && <div><strong>Contact no </strong><span>{campaign?.contactNo}</span></div>}
-                </div>
+                    {campaign?.registrationLink && <div><strong>Register on </strong><span><a href={campaign?.registrationLink} className='ph-url-colored text-break' target='_blank'>{campaign?.registrationLink}</a></span></div>}
+                </div>}
+                {!campaign && <TableLoader length={4} />}
             </div>
             {campaign?.leaflet && <div className='ph-campaign-img-box'>
                 <h6>Read the leaflet</h6>

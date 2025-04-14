@@ -20,7 +20,7 @@
 
 /***** user details section css *****/
 .ph-user-details-sec {
-    box-shadow: 0 0 9px 0 #aaaaaa73;
+    box-shadow: 0 0 9px 0 var(--ph-shadow-color);
 }
 
 .ph-user-det-line {
@@ -28,7 +28,7 @@
     grid-template-columns: auto 1fr;
     gap: 1em;
     padding: 0.5em;
-    border-bottom: 1px solid #dfdfdf;
+    border-bottom: 1px solid var(--ph-border-lt);
 }
 
 .ph-user-det-line div:first-child {
@@ -44,7 +44,7 @@
     padding: 0.5em;
     gap: 1em;
     margin-bottom: 1em;
-    background-color: #ffff;
+    background-color: var(--ph-bg-color);
     position: sticky;
     top: 4.4em;
     z-index: 3;
@@ -58,10 +58,11 @@
 .ph-profile-nav-opt {
     border: none;
     outline: none;
-    background-color: #e8e8e8;
+    background-color: var(--ph-secondary-color);
     padding: 0.3em 0.9em;
     border-radius: 10px;
     transition: 0.3s;
+    color: var(--ph-body-color);
 }
 
 .ph-profile-nav .active button {
@@ -81,7 +82,7 @@
 
 .ph-request-item {
     width: 20em;
-    box-shadow: 0 0 9px 0 #aaaaaa73;
+    box-shadow: 0 0 9px 0 var(--ph-shadow-color);
     padding: 0.5em;
 }
 
@@ -90,7 +91,7 @@
 }
 
 .ph-request-item-det-box {
-    background-color: #ececec;
+    background-color: var(--ph-secondary-color);
     margin-bottom: 0.5em;
 }
 
@@ -122,7 +123,7 @@
 
 /***** Profile edit page css *****/
 .ph-profile-edit-section {
-    box-shadow: 0 0 9px 0 #aaaaaa73;
+    box-shadow: 0 0 9px 0 var(--ph-shadow-color);
     padding: 0.7em;
 }
 
@@ -153,7 +154,7 @@
         gap: 0.5em;
     }
 
-    .ph-profile-user-gen-det-box{
+    .ph-profile-user-gen-det-box {
         display: flex;
         flex-direction: column;
         align-items: center;

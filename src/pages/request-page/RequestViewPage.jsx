@@ -9,6 +9,7 @@ import shareContent from '../../utils/share-function';
 import blankPageSvg from "../../assets/svg/blank-page.svg"
 import { Spinner } from '../../components/loaders/Spinner';
 import { formatDate } from '../../utils/date-converter';
+import { TableLoader } from '../../components/loaders/TableLoader';
 
 export const RequestViewPage = () => {
     const navigate = useNavigate();
@@ -110,20 +111,22 @@ export const RequestViewPage = () => {
             </div>
             <div className="mb-4">
                 <h6 className='mb-2'>Requirements</h6>
-                <div className='ph-table'>
+                {request && <div className='ph-table'>
                     <div><strong>Blood group </strong><span>{request?.bloodGroup}</span></div>
                     <div><strong>Date </strong><span>{formatDate(request?.date)?.formattedDate}</span></div>
                     {request?.reason && <div><strong>Reason </strong><span><pre>{request?.reason}</pre></span></div>}
-                </div>
+                </div>}
+                {!request && <TableLoader length={3} />}
             </div>
             <div className='mb-5'>
                 <h6 className='mb-2'>Contact details</h6>
-                <div className='ph-table'>
+                {request && <div className='ph-table'>
                     <div><strong>Applicant </strong><span>{request?.applicant}</span></div>
                     <div><strong>Address </strong><span>{`${request?.address?.addressLine}, ${request?.address?.district}, ${request?.address?.state}.`}</span></div>
                     <div><strong>Pin code </strong><span>{request?.pincode}</span></div>
                     <div><strong>Contact no </strong><span>{request?.phoneNo}</span></div>
-                </div>
+                </div>}
+                {!request && <TableLoader length={4} />}
             </div>
             {currentUser?._id === request?.requestedBy ?
                 <div className='ph-d-flex-wrap gap-3 mb-5'>

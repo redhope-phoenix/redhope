@@ -7,6 +7,8 @@ import axios from '../../configs/axios-configs'
 import { Spinner } from '../../components/loaders/Spinner'
 import blankPageSvg from "../../assets/svg/blank-page.svg"
 import { formatDate } from '../../utils/date-converter'
+import { TableLoader } from '../../components/loaders/TableLoader'
+import { BoxLoader } from '../../components/loaders/box-loaders'
 
 export const ProfilePage = () => {
     const navigate = useNavigate();
@@ -29,16 +31,23 @@ export const ProfilePage = () => {
                 <div className='ph-profile-img-box mb-3'>
                     <img src={currentUser?.avatar || require("../../assets/img/profile-logo.png")} alt="" />
                 </div>
-                <div className='ph-profile-user-gen-det-box'>
-                    <div><h5>{currentUser?.userName}</h5></div>
-                    <div className='word-break'>{currentUser?.email}</div>
-                    <div className='mb-3'>{currentUser?.phoneNo}</div>
+                {currentUser ?
+                    <div className='ph-profile-user-gen-det-box'>
+                        <div><h5>{currentUser?.userName}</h5></div>
+                        <div className='word-break'>{currentUser?.email}</div>
+                        <div className='mb-3'>{currentUser?.phoneNo}</div>
+                        <div>
+                            <button className="ph-btn ph-btn-primary" onClick={() => navigate("/profile-edit")}><span><i className="ri-pencil-line"></i></span><span>Edit profile</span></button>
+                        </div>
+                    </div> :
                     <div>
-                        <button className="ph-btn ph-btn-primary" onClick={() => navigate("/profile-edit")}><span><i className="ri-pencil-line"></i></span><span>Edit profile</span></button>
+                        <BoxLoader />
+                        <BoxLoader />
+                        <BoxLoader />
                     </div>
-                </div>
+                }
             </section>
-            <section className='ph-user-details-sec mb-5'>
+            {currentUser ? <section className='ph-user-details-sec mb-5'>
                 {currentUser?.dateOfBirth && <div className='ph-user-det-line'>
                     <div><strong>Date of birth</strong></div>
                     <div><span>{formatDate(currentUser?.dateOfBirth)?.formattedDate}</span></div>
@@ -51,7 +60,11 @@ export const ProfilePage = () => {
                     <div><strong>Address</strong></div>
                     <div><span>{currentUser?.address?.addressLine}, {currentUser?.address?.district}, {currentUser?.address?.state} - {currentUser?.pincode}</span></div>
                 </div>}
-            </section>
+            </section> :
+                <section className='mb-5'>
+                    <TableLoader length={3} />
+                </section>
+            }
 
             <section>
                 <div className='ph-profile-nav' style={{ top: navTop }}>

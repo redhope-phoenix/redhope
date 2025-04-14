@@ -1,6 +1,6 @@
-.hb-dropdown-box{
+.hb-dropdown-box {
     position: absolute;
-    background-color: #ffff;
+    background-color: var(--ph-bg-color);
     z-index: 7;
     padding: 0.7em;
     box-shadow: 0 0 9px 0 #9b9b9b5a;
@@ -9,26 +9,28 @@
 }
 
 @keyframes dropdownInAnim {
-    0%{
+    0% {
         opacity: 0;
         transform: translateY(30px);
     }
-    100%{
+
+    100% {
         opacity: 1;
         transform: translateY(0px);
     }
 }
 
-.hb-ddown-close-anim{
+.hb-ddown-close-anim {
     animation: dropdownOutAnim 0.4s 1;
 }
 
 @keyframes dropdownOutAnim {
-    0%{
+    0% {
         opacity: 1;
         transform: translateY(0px);
     }
-    100%{
+
+    100% {
         opacity: 0;
         transform: translateY(30px);
     }

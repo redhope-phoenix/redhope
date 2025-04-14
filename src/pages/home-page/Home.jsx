@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { use, useContext, useEffect, useState } from 'react'
 import "./home.style.css"
 import { CampaignItem } from '../../components/campaign-item/CampaignItem'
 import axios from '../../configs/axios-configs';
@@ -9,10 +9,13 @@ import { useNavigate } from 'react-router-dom';
 import { Dropdown } from '../../components/dropdown/Dropdown';
 import AuthContext from '../../contexts/AuthContext';
 import { useCurrentUser } from '../../hooks/current-user';
+import donationSvg from "../../assets/svg/donation-logo.svg"
+import campaignSvg from "../../assets/svg/campaign-logo.svg"
+import assistantSvg from "../../assets/svg/doctor-ai.svg"
 
 export const Home = () => {
     const navigate = useNavigate();
-    const currentUser = useCurrentUser();
+    const { currentUser } = useContext(AuthContext);
     // handle filter
     const [openFilter, setOpenFilter] = useState(false);
     const filterList = [
@@ -27,14 +30,6 @@ export const Home = () => {
     ]
 
     const [filter, setFilter] = useState(filterList[1]);
-    // useEffect(() => {
-    //     if (currentUser?.pincode) {
-    //         setFilter(filterList[0]);
-    //     } else {
-
-    //         setFilter(filterList[1])
-    //     }
-    // }, [currentUser, currentUser]);
 
     // handle feed
     const [campaignList, setCampaignList] = useState(null);
@@ -42,7 +37,7 @@ export const Home = () => {
         const fetchList = async () => {
             try {
                 setCampaignList(null)
-                await axios.get(`/campaign/campaign-feed?filter=${filter?.value}&pincode=${currentUser?.pinCode || undefined}`)
+                await axios.get(`/campaign/campaign-feed?filter=${filter?.value}&pincode=${currentUser?.pincode || undefined}`)
                     .then(res => {
                         setCampaignList(res?.data?.data);
                     })
@@ -77,8 +72,27 @@ export const Home = () => {
 
     return (
         <div className='container'>
-            <div className="ph-request-btn-box my-4 mb-5">
-                <button className='ph-btn ph-request-btn ph-btn-primary' onClick={() => navigate("/create-request")}><span>Request for a Blood Donation</span><span><i className="ri-arrow-right-wide-line"></i></span></button>
+            <div className="my-4 mb-5">
+                <div className="text-center mb-4 ">
+                    <h5>Services</h5>
+                </div>
+                <div className='ph-service-list'>
+                    <div className='ph-service-item' onClick={() => navigate("/create-request")}>
+                        <div className='d-flex justify-content-center'><img src={donationSvg} alt="" /></div>
+                        <div className='text-center'>Request for donation</div>
+                    </div>
+
+                    <div className='ph-service-item' onClick={() => navigate("/create-campaign")}>
+                        <div className='d-flex justify-content-center'><img src={campaignSvg} alt="" /></div>
+                        <div className='text-center'>Contribute campaign</div>
+                    </div>
+
+                    <div className='ph-service-item' onClick={() => navigate("/health-assistant")}>
+                        <div className='d-flex justify-content-center'><img src={assistantSvg} alt="" /></div>
+                        <div className='text-center'>Health assistant</div>
+                    </div>
+                </div>
+
             </div>
             <div className='mb-4'>
                 <div className="text-center mb-4 ">
@@ -117,7 +131,7 @@ export const Home = () => {
                     }
                     {otherCampaignList?.length > 0 &&
                         <div>
-                            <h6 className='mb-3'>Other Camps</h6>
+                            {todaysCampaignList?.length>0 && <h6 className='mb-3'>Other Camps</h6>}
                             <div className="ph-camps-list">
                                 {otherCampaignList?.map((item, index) => {
                                     return <CampaignItem key={index} data={item} />

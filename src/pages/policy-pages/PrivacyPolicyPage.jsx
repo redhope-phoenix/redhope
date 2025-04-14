@@ -8,7 +8,7 @@ export const PrivacyPolicyPage = () => {
     return (
         <div className='container'>
             <h1 className='mb-4'>Privacy Policy</h1>
-            <p><strong>Effective Date:</strong> 17/02/2024</p>
+            <p><strong>Effective Date:</strong> 18/04/2025</p>
             <p>Welcome to Redhope ("we," "our," or "us"). Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal information when you use our website and services.</p>
 
             <h4>1. Information We Collect</h4>
