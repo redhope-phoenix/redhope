@@ -37,9 +37,9 @@ function App() {
 
         <AppRoutes />
       </main>
-      <footer className='text-center my-4 mt-5'>
+      {!location.pathname.includes("/health-assistant")&&<footer className='text-center my-4 mt-5'>
         &copy;2025 Redhope. All rights are reserverd
-      </footer>
+      </footer>}
 
       <ToastContainer
         position="top-center"

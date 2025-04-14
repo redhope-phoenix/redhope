@@ -1,5 +1,5 @@
 .ph-assistant-container {
-    height: 87vh;
+    height: calc(100svh - 95px);
     display: grid;
     grid-template-rows: auto 1fr auto;
 }
@@ -73,7 +73,7 @@
     }
 }
 
-.ph-assistant-query-sample-item{
+.ph-assistant-query-sample-item {
     padding: 0.3em 0.7em;
     border: 1px solid var(--ph-l-green);
     border-radius: 20px;
