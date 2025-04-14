@@ -68,6 +68,10 @@ export const Assistant = () => {
         }
     }
 
+    useEffect(() => {
+        document.title = "Redhper - Health Assistant";
+    }, []);
+
     // sample query list
     const sampleQueries = [
         "What are the symptoms of diabetes?",
