@@ -133,7 +133,7 @@ const RequestItem = ({ data }) => {
                 <div><strong>Blood group </strong><span>{data?.bloodGroup}</span></div>
             </div>
             <div className='mb-2'>
-                <div>Send to {data?.reachedTo} people</div>
+                <div>Sent to {data?.reachedTo} people</div>
                 <div>Responded by {data?.approvedBy} people</div>
             </div>
             <div>

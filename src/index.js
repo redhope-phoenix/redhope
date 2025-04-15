@@ -6,9 +6,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 
-// ['log', 'warn', 'error', 'info', 'debug'].forEach(method => {
-//   console[method] = () => { };
-// });
+['log', 'warn', 'error', 'info', 'debug'].forEach(method => {
+  console[method] = () => { };
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

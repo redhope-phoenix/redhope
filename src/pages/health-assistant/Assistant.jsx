@@ -94,7 +94,7 @@ export const Assistant = () => {
 
     return (
         <div className='container ph-assistant-container'>
-            <h5 className='mb-3'>Chintu C1.0</h5>
+            <h5 className='mb-3'>Assistant Jyoti</h5>
             <div className='ph-assistant-chat-box' ref={boxRef}>
                 <div className='ph-assistant-chat-box-content'>
                     {
@@ -111,7 +111,7 @@ export const Assistant = () => {
                     {
                         messageList?.length == 0 && <div className='ph-assistant-chat-box-placeholder text-center'>
                             <img src={assistantLogo} alt="" width={100} className='mb-3' />
-                            <h3>Hello, I'm Chintu</h3>
+                            <h3>Hello, I'm Jyoti</h3>
                             <p>Ask me anything about your health and I will try to help you.</p>
                             <h6>Try to ask</h6>
                             <div className='ph-d-flex-wrap justify-content-center'>
