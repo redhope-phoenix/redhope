@@ -144,6 +144,13 @@
     }
 }
 
+.ph-chat-bubble a {
+    text-decoration: none;
+    word-break: break-all;
+    word-wrap: break-word;
+    color: #5076f5;
+}
+
 .ph-chat-bubble-assistant .ph-chat-bubble-content {
     display: flex;
     gap: 1em;
@@ -190,7 +197,7 @@
         width: 100%;
     }
 
-    .ph-assistant-chat-box{
+    .ph-assistant-chat-box {
         padding: 1em 0;
     }
 }

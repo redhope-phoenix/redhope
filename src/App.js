@@ -12,6 +12,7 @@ import { ToastContainer } from 'react-toastify';
 import { useLocation, useNavigate } from 'react-router-dom';
 import AuthContext from './contexts/AuthContext';
 import { useCurrentUser } from './hooks/current-user';
+import ThemeContext from './contexts/ThemeContext';
 
 function App() {
   const [showNav, setShowNav] = useState(true);
@@ -19,11 +20,13 @@ function App() {
   useEffect(() => {
     if (location.pathname.includes("/auth/")) setShowNav(false);
     else setShowNav(true);
+    window.scrollTo(0, 0);
   }, [location])
 
   const navigate = useNavigate()
-  const { isAuthenticated } = useContext(AuthContext);
-  const currentUser = useCurrentUser();
+  const { isAuthenticated, currentUser } = useContext(AuthContext);
+
+  const { mainTheme } = useContext(ThemeContext);;
 
   return (
     <>
@@ -37,7 +40,7 @@ function App() {
 
         <AppRoutes />
       </main>
-      {!location.pathname.includes("/health-assistant")&&<footer className='text-center my-4 mt-5'>
+      {!location.pathname.includes("/health-assistant") && <footer className='text-center my-4 mt-5'>
         &copy;2025 Redhope. All rights are reserverd
       </footer>}
 
@@ -51,7 +54,7 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme={"dark"}
+        theme={mainTheme}
       />
     </>
   );
