@@ -3,12 +3,12 @@ import { PopInput } from '../../components/inputs/PopInput'
 import { useCurrentUser } from '../../hooks/current-user';
 import axios from '../../configs/axios-configs';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../../contexts/AuthContext';
 
 export const RequestDonatePage = () => {
     const navigate = useNavigate();
-    const currentUser = useContext(AuthContext);
+    const { currentUser } = useContext(AuthContext);
     // states for inputs
     const [contactInfo, setContactInfo] = useState({});
     const [requirement, setRequirement] = useState({});
@@ -44,7 +44,7 @@ export const RequestDonatePage = () => {
         <div className='container'>
             <div className='mb-4'>
                 <h5>Request for a Blood donation</h5>
-                <p>Create a application to request for a urgent blood donation. <a href="" className='ph-url-colored'>Learn more</a></p>
+                <p>Create a application to request for a urgent blood donation. <Link to={`/health-assistant?prompt=${encodeURI("How blood donation request works in redhope.")}`} className='ph-url-colored'>Learn more</Link></p>
             </div>
 
             <div>

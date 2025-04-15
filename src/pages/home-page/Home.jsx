@@ -98,7 +98,7 @@ export const Home = () => {
                 <div className="text-center mb-4 ">
                     <h5>Campaigns</h5>
                 </div>
-                <div className='d-flex align-items-center gap-3 mb-3 ph-feed-filter-btn' onClick={(e) => { e.stopPropagation(); setOpenFilter(!openFilter) }}>
+                <button className='d-flex align-items-center gap-3 mb-3 ph-feed-filter-btn' onClick={(e) => { e.stopPropagation(); setOpenFilter(!openFilter) }}>
                     <div><strong>Filter</strong><span><i className="ri-arrow-right-s-fill"></i></span></div>
                     <div>
                         <div>{filter.name}</div>
@@ -112,7 +112,7 @@ export const Home = () => {
                             </Dropdown>
                         </div>
                     </div>
-                </div>
+                </button>
                 <div>
                     {campaignList === null && <div className='text-center d-flex justify-content-center' style={{ width: "100%" }}><Spinner width={40} colorCode={1} /></div>}
                     {campaignList?.length === 0 && <div className='d-flex flex-column align-items-center' style={{ width: "100%" }}>
@@ -131,7 +131,7 @@ export const Home = () => {
                     }
                     {otherCampaignList?.length > 0 &&
                         <div>
-                            {todaysCampaignList?.length>0 && <h6 className='mb-3'>Other Camps</h6>}
+                            {todaysCampaignList?.length > 0 && <h6 className='mb-3'>Other Camps</h6>}
                             <div className="ph-camps-list">
                                 {otherCampaignList?.map((item, index) => {
                                     return <CampaignItem key={index} data={item} />

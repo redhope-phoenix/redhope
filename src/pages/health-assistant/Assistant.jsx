@@ -7,6 +7,7 @@ import { Spinner } from '../../components/loaders/Spinner'
 import { toast } from 'react-toastify'
 
 import assistantLogo from "../../assets/svg/doctor-ai.svg"
+import { useSearchParams } from 'react-router-dom'
 
 export const Assistant = () => {
     // handle auto text area height
@@ -67,6 +68,16 @@ export const Assistant = () => {
             boxRef.current.scrollTop = boxRef.current.scrollHeight;
         }
     }
+
+    // handle prompt from query
+    const [query] = useSearchParams();
+    const prompt = query.get("prompt");
+    useEffect(() => {
+        if (prompt) {
+            handleMessageSend(decodeURI(prompt));
+        }
+    }, [prompt]);
+
 
     useEffect(() => {
         document.title = "Redhper - Health Assistant";
@@ -135,7 +146,13 @@ const ChatBubble = ({ bubbleFor = "user", message = "" }) => {
     return (
         <div className={`ph-chat-bubble ${bubbleFor === "user" ? "ph-chat-bubble-user" : "ph-chat-bubble-assistant"}`}>
             <div className='ph-chat-bubble-content'>
-                <Markdown>{message}</Markdown>
+                {bubbleFor === "assistant" &&
+                    <div>
+                        <img src={assistantLogo} alt="" width={40} className='ph-chat-bubble-assistant-img' />
+                    </div>}
+                <div>
+                    <Markdown>{message}</Markdown>
+                </div>
             </div>
             <div className='ph-chat-bubble-btn-box'>
                 <button className="ph-btn ph-btn-shadow" onClick={() => handleCopy(message)}><i className="ri-file-copy-line"></i></button>

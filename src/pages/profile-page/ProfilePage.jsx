@@ -133,8 +133,8 @@ const RequestItem = ({ data }) => {
                 <div><strong>Blood group </strong><span>{data?.bloodGroup}</span></div>
             </div>
             <div className='mb-2'>
-                <div>Send to {data?.reachedTo} peoples</div>
-                <div>Respond by {data?.approvedBy} peoples</div>
+                <div>Send to {data?.reachedTo} people</div>
+                <div>Responded by {data?.approvedBy} people</div>
             </div>
             <div>
                 <button className={`ph-btn ph-btn-shadow ${!data?.isActive && (data?.isFulfilled ? "text-success" : "text-danger")}`} disabled={!data?.isActive} onClick={() => navigate(`/request/${data?._id}`)}>

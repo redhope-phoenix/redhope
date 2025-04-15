@@ -96,10 +96,10 @@
     width: fit-content;
     justify-self: end;
     margin-bottom: 1em;
-    max-width: 60%;
+    max-width: 80%;
 }
 
-.ph-chat-bubble-user {
+.ph-chat-bubble-user .ph-chat-bubble-content {
     & p {
         margin-bottom: 0 !important;
     }
@@ -144,6 +144,17 @@
     }
 }
 
+.ph-chat-bubble-assistant .ph-chat-bubble-content {
+    display: flex;
+    gap: 1em;
+}
+
+.ph-chat-bubble-assistant-img {
+    background-color: var(--ph-shadow-color);
+    padding: 0.4em;
+    border-radius: 50%;
+}
+
 .ph-chat-bubble-btn-box {
     color: black;
     position: absolute;
@@ -173,6 +184,14 @@
 @media screen and (max-width: 768px) {
     .ph-assistant-input-box {
         width: 90%;
+    }
+
+    .ph-chat-bubble-assistant {
+        width: 100%;
+    }
+
+    .ph-assistant-chat-box{
+        padding: 1em 0;
     }
 }
 

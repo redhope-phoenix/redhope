@@ -62,6 +62,10 @@
     width: fit-content;
     border-radius: 10px;
     transition: 0.3s;
+    background-color: transparent;
+    border: 1px solid transparent;
+    outline: none;
+    color: inherit;
 }
 
 .ph-feed-filter-btn:active {
