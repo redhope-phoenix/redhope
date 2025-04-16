@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import './assistant.style.css'
 
 import Markdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import axios from '../../configs/axios-configs'
 import { Spinner } from '../../components/loaders/Spinner'
 import { toast } from 'react-toastify'
@@ -28,34 +29,77 @@ export const Assistant = () => {
 
     // handle assistant message
     const [generating, setGenerating] = useState(false);
-
-    const handleRespospnseGeneration = async (prompt) => {
+    const [loading, setLoading] = useState(false);
+    const [response, setResponse] = useState({ index: 0, message: "" });
+    const [source, setSource] = useState(null);
+    const [streamError, setStreamError] = useState(false);
+    const handleRespospnseGeneration = async (prompt, index) => {
         setGenerating(true);
+        setLoading(true);
+        setStreamError(false);
         try {
-            const response = await axios.get(`/ai/get-health-ai-response?prompt=${prompt}`);
-            const message = response.data?.data?.message;
-            // const answerMatch = message.match(/"answer": "([\s\S]*?)"/);
-            // const answer = answerMatch ? answerMatch[1] : message;
-            return message;
+            if (source) {
+                source.close();
+            }
+            setResponse({ index: 0, message: "" });
+            const newSource = new EventSource(`${process.env.REACT_APP_PROXY_URI}/api/v1/ai/get-health-ai-response?prompt=${prompt}`);
+            setSource(newSource);
+            newSource.onmessage = (event) => {
+                setLoading(false);
+                if (event.data === '[DONE]') {
+                    setGenerating(false);
+                    setResponse({ ...response, index: index, stopped: true });
+                    newSource.close();
+                    return;
+                }
+                const parsed = JSON.parse(event.data);
+                if (parsed.content) {
+                    setResponse(prev => ({ index: index, message: prev.message + parsed.content }));
+                }
+            };
+
+            newSource.onerror = (err) => {
+                console.error('Streaming failed', err);
+                setGenerating(false);
+                setResponse({ ...response, index: index, error: true, message: "Something went wrong!", stopped: true });
+                newSource.close();
+            };
+
+
+            return () => {
+                newSource.close();
+            };
         } catch (error) {
             console.error(error);
+            setGenerating(false);
+            setStreamError(true);
         }
-        setGenerating(false);
     }
 
     const handleMessageSend = async (text) => {
         if ((input == "" && !text) || generating) return;
         setMessageList([...messageList, { bubbleFor: "user", message: input || text }]);
-        handleScrollDown(); // scroll to bottom
+        // handleScrollDown(); // scroll to bottom
         setInput('');
-        const message = await handleRespospnseGeneration(input || text);
-        setMessageList([...messageList, { bubbleFor: "user", message: input || text }, { bubbleFor: "assistant", message: message?.content }]);
-        setGenerating(false);
+        handleRespospnseGeneration(input || text, messageList?.length + 1); // send message to assistant
     }
+
+    useEffect(() => {
+        if (response?.message) {
+            setMessageList(prev => {
+                const updatedList = [...prev];
+                updatedList[response.index] = { bubbleFor: "assistant", ...response };
+                return updatedList;
+            });
+            console.log(response);
+            
+            // handleScrollDown(); // scroll to bottom
+        }
+    }, [response])
 
     // key event handler
     const handleKeyDown = (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
+        if (window.innerWidth > 768 && e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             handleMessageSend();
         }
@@ -63,11 +107,23 @@ export const Assistant = () => {
 
     // handle scrolling
     const boxRef = useRef(null);
-    const handleScrollDown = () => {
-        if (boxRef.current) {
+    const bottomRef = useRef(null);
+    const [autoScroll, setAutoScroll] = useState(true);
+    // Auto-scroll logic
+    useEffect(() => {
+        if (autoScroll && boxRef.current) {
             boxRef.current.scrollTop = boxRef.current.scrollHeight;
         }
-    }
+    }, [messageList, autoScroll]);
+
+    // Detect manual scrolling
+    const handleScroll = () => {
+        if (boxRef.current) {
+            const { scrollTop, scrollHeight, clientHeight } = boxRef.current;
+            const isAtBottom = scrollHeight - scrollTop <= clientHeight + 10; // Small threshold
+            setAutoScroll(isAtBottom);
+        }
+    };
 
     // handle prompt from query
     const [query] = useSearchParams();
@@ -95,14 +151,14 @@ export const Assistant = () => {
     return (
         <div className='container ph-assistant-container'>
             <h5 className='mb-3'>Assistant Jyoti</h5>
-            <div className='ph-assistant-chat-box' ref={boxRef}>
+            <div className='ph-assistant-chat-box' ref={boxRef} onScroll={handleScroll}>
                 <div className='ph-assistant-chat-box-content'>
                     {
                         messageList.map((message, index) => {
                             return <ChatBubble key={index} bubbleFor={message.bubbleFor} message={message.message} />
                         })
                     }
-                    {generating &&
+                    {loading &&
                         <div className='d-flex align-center gap-2'>
                             <Spinner colorCode={1} width={20} />
                             <div className='ph-response-loading-text'>Generating responses...</div>
@@ -151,12 +207,16 @@ const ChatBubble = ({ bubbleFor = "user", message = "" }) => {
                         <img src={assistantLogo} alt="" width={40} className='ph-chat-bubble-assistant-img' />
                     </div>}
                 <div>
-                    <Markdown>{message}</Markdown>
+                    <Markdown remarkPlugins={[remarkGfm]}>{message}</Markdown>
                 </div>
             </div>
-            <div className='ph-chat-bubble-btn-box'>
+            {(bubbleFor === "assistant" && message?.error) && <div className='ph-stream-error-msg'>
+                <span>Failed to stream! Unexpected error occurs.</span>
+            </div>}
+            {(bubbleFor === "user" || message?.stopped) && <div className='ph-chat-bubble-btn-box'>
                 <button className="ph-btn ph-btn-shadow" onClick={() => handleCopy(message)}><i className="ri-file-copy-line"></i></button>
-            </div>
+                {bubbleFor === "assistant" && <button className="ph-btn ph-btn-shadow" onClick={() => handleCopy(message)}><i class="ri-restart-line"></i></button>}
+            </div>}
         </div>
     )
 }
