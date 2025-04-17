@@ -159,7 +159,7 @@ export const Assistant = () => {
                         })
                     }
                     {loading &&
-                        <div className='d-flex align-center gap-2'>
+                        <div className='d-flex align-center gap-2' style={{marginBottom: '10em'}}>
                             <Spinner colorCode={1} width={20} />
                             <div className='ph-response-loading-text'>Generating responses...</div>
                         </div>
