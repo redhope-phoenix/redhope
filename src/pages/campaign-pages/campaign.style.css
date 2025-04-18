@@ -1,0 +1,52 @@
+.ph-campaign-leaflet-uploader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 15em;
+    border: 1px solid var(--ph-l-grey);
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0.5em;
+}
+
+.ph-campaign-upload-img-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ph-campaign-upload-img-box img {
+    width: 30em;
+}
+
+.ph-campaign-upload-change-btn {
+    position: absolute;
+    background-color: #d1d1d193;
+    padding: 0.5em;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+}
+
+/***** Campaign view page css *****/
+.ph-campaign-img-box img {
+    width: 40em;
+}
+
+/***** End Campaign view page css *****/
+
+/***** Media queries *****/
+@media screen and (max-width: 990px) {
+    .ph-campaign-img-box img {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .ph-campaign-upload-img-box img {
+        width: 90vw;
+    }
+}
+
+/***** End Media queries *****/
